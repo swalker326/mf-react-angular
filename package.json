@@ -2,7 +2,10 @@
   "name": "@nx-playground/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "pnpm -r dev"
+  },
   "private": true,
   "dependencies": {},
   "devDependencies": {
