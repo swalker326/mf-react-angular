@@ -2,11 +2,13 @@ import React, { Suspense, useState } from "react";
 import "./App.css";
 // const ReactRemote = React.lazy(() => import("reactRemote/App"));
 // const AngularRemote = React.lazy(() =>
-// // @ts-expect-error - angular am i right
-// const AngularRemote = import("angularRemote/Component").then((m) => {
-//   console.log(":::M", m);
-//   return { default: m.Component };
-// });
+const AngularRemote = React.lazy(() =>
+  // @ts-expect-error - angular am i right
+  import("angularRemote/Component").then((module) => {
+    console.log(":::MODULE", module);
+    return { default: module.AppComponent };
+  })
+);
 // const RemoteWrapper = React.lazy(() =>
 //   import("./RemoteWrapper").then((module) => {
 //     console.log(":::MODULE", module);
@@ -24,7 +26,7 @@ function App() {
         <RemoteWrapper />
       </Suspense> */}
       <Suspense fallback="Loading Angular Remote">
-        {/* <AngularRemote /> */}
+        <AngularRemote />
       </Suspense>
     </div>
   );
