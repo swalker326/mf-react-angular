@@ -11,6 +11,9 @@ const targets = ["chrome >= 87", "edge >= 88", "firefox >= 78", "safari >= 14"];
 
 export default defineConfig({
   context: __dirname,
+  output: {
+    publicPath: "auto"
+  },
   entry: {
     main: "./src/main.tsx"
   },
@@ -55,6 +58,7 @@ export default defineConfig({
   plugins: [
     new ModuleFederationPlugin({
       name: "reactHost",
+      dts: false,
       remotes: {
         reactRemote: "reactRemote@http://localhost:3001/remoteEntry.js",
         angularRemote: "angularRemote@http://localhost:4200/remoteEntry.js"
@@ -69,10 +73,6 @@ export default defineConfig({
           singleton: true,
           requiredVersion: dependencies["react-dom"]
         }
-        // "react-router-dom": {
-        //   singleton: true,
-        //   requiredVersion: dependencies["react-router-dom"]
-        // }
       }
     }),
     new rspack.HtmlRspackPlugin({

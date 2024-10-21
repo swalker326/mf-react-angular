@@ -1,4 +1,6 @@
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+// const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const ModuleFederationPlugin =
+  require("@module-federation/enhanced/webpack").ModuleFederationPlugin;
 const mf = require("@angular-architects/module-federation/webpack");
 const path = require("path");
 const share = mf.share;
@@ -11,6 +13,7 @@ sharedMappings.register(path.join(__dirname, "tsconfig.json"), [
 module.exports = {
   output: {
     uniqueName: "angularRemote",
+    // publicPath: "http://localhost:4200/",
     publicPath: "auto",
   },
   optimization: {
@@ -32,14 +35,8 @@ module.exports = {
       name: "angularRemote",
       filename: "remoteEntry.js",
       exposes: {
-        "./Component": ".//src/app/app.component.ts",
+        "./Component": "./src/app/app.component.ts",
       },
-
-      // For hosts (please adjust)
-      // remotes: {
-      //     "mfe1": "http://localhost:3000/remoteEntry.js",
-
-      // },
 
       shared: share({
         "@angular/core": {
