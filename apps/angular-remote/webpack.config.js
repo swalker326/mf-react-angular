@@ -34,6 +34,7 @@ module.exports = {
       name: "angularRemote",
       filename: "remoteEntry.mjs",
       exposes: {
+        "./Module": "./loadApp.ts",
         "./Component": "./src/app/app.component.ts",
       },
       shared: share({

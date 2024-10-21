@@ -4,22 +4,26 @@ const RemoteWrapper = () => {
   const ref = useRef(null);
 
   useEffect(() => {
-    let unmount;
+    // let unmount;
     import("angularRemote/Component")
-      .then((stuff) => {
-        console.log(":::NG STUFF", stuff);
-        unmount = stuff(ref.current);
+      .then(({ AppComponent }) => {
+        console.log(":::NG STUFF", AppComponent);
+        ref.current = new AppComponent();
       })
       .catch((err) => console.error("Error loading Angular component:", err));
 
-    return () => {
-      if (unmount) {
-        unmount();
-      }
-    };
+    // return () => {
+    //   if (unmount) {
+    //     unmount();
+    //   }
+    // };
   }, []);
 
-  return <div ref={ref}></div>;
+  return (
+    <div ref={ref}>
+      <h1>Angular Remote</h1>
+    </div>
+  );
 };
 
 export default RemoteWrapper;
