@@ -3,13 +3,14 @@ import { rspack } from "@rspack/core";
 import * as RefreshPlugin from "@rspack/plugin-react-refresh";
 import { ModuleFederationPlugin } from "@module-federation/enhanced/rspack";
 import { dependencies } from "./package.json";
+import { withZephyr } from "zephyr-webpack-plugin";
 
 const isDev = process.env.NODE_ENV === "development";
 
 // Target browsers, see: https://github.com/browserslist/browserslist
 const targets = ["chrome >= 87", "edge >= 88", "firefox >= 78", "safari >= 14"];
 
-export default defineConfig({
+export default withZephyr()({
   context: __dirname,
   output: {
     publicPath: "auto"
@@ -55,6 +56,7 @@ export default defineConfig({
       }
     ]
   },
+  //@ts-expect-error - This is a known issue with the type definitions
   plugins: [
     new ModuleFederationPlugin({
       name: "reactHost",
@@ -82,7 +84,9 @@ export default defineConfig({
   ].filter(Boolean),
   optimization: {
     minimizer: [
+      //@ts-expect-error - This is a known issue with the type definitions
       new rspack.SwcJsMinimizerRspackPlugin(),
+      //@ts-expect-error - This is a known issue with the type definitions
       new rspack.LightningCssMinimizerRspackPlugin({
         minimizerOptions: { targets }
       })

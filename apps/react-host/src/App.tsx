@@ -5,13 +5,20 @@ import { AngularRemoteApp } from "./AngularRemoteApp";
 
 function App() {
   return (
-    <div className="App">
-      <Suspense fallback="Loading React Remote">
-        <ReactRemote />
-      </Suspense>
-      <Suspense fallback="Loading Angular Remote">
-        <AngularRemoteApp />
-      </Suspense>
+    <div
+      style={{ display: "flex", flexDirection: "column", gap: "3rem" }}
+      className="App"
+    >
+      <div style={{ border: "1px solid blue" }}>
+        <Suspense fallback="Loading React Remote">
+          <ReactRemote />
+        </Suspense>
+      </div>
+      <div style={{ border: "1px solid red" }}>
+        <Suspense fallback="Loading Angular Remote">
+          <AngularRemoteApp />
+        </Suspense>
+      </div>
     </div>
   );
 }
