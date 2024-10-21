@@ -11,6 +11,9 @@ const targets = ["chrome >= 87", "edge >= 88", "firefox >= 78", "safari >= 14"];
 
 export default defineConfig({
   context: __dirname,
+  output: {
+    publicPath: "auto"
+  },
   entry: {
     main: "./src/main.tsx"
   },

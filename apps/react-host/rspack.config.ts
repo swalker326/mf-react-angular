@@ -56,7 +56,8 @@ export default defineConfig({
     new ModuleFederationPlugin({
       name: "reactHost",
       remotes: {
-        reactRemote: "reactRemote@http://localhost:3001/remoteEntry.js"
+        reactRemote: "reactRemote@http://localhost:3001/remoteEntry.js",
+        angularRemote: "angularRemote@http://localhost:4200/remoteEntry.js"
       },
       shared: {
         ...dependencies,
