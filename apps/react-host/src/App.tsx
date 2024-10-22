@@ -9,6 +9,7 @@ function App() {
       style={{ display: "flex", flexDirection: "column", gap: "3rem" }}
       className="App"
     >
+      <h1>React Host App</h1>
       <div style={{ border: "1px solid blue" }}>
         <Suspense fallback="Loading React Remote">
           <ReactRemote />

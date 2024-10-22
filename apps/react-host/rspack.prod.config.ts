@@ -1,3 +1,4 @@
+import { defineConfig } from "@rspack/cli";
 import { rspack } from "@rspack/core";
 import * as RefreshPlugin from "@rspack/plugin-react-refresh";
 import { ModuleFederationPlugin } from "@module-federation/enhanced/rspack";
@@ -62,8 +63,8 @@ export default withZephyr()({
       dts: false,
       remotes: {
         reactRemote:
-          "reactRemote@https://shane_swalker_dev-32n032cs6a_989-react-remote-mf--0c2a924b2-ze.averygood.dev/remoteEntry.js"
-        // angularRemote: "angularRemote@http://localhost:4200/mf-manifest.json"
+          "reactRemote@https://latest_shane_swalker_dev-react-remote-mf-react-angula-a92d00-ze.averygood.dev/remoteEntry.js"
+        // angularRemote: "angularRemote@https://latest_shane_swalker_dev-angular-remote-mf-react-angu-fbe0c3-ze.averygood.dev/mf-manifest.json"
       },
       shared: {
         ...dependencies,
@@ -83,6 +84,7 @@ export default withZephyr()({
     isDev ? new RefreshPlugin() : null
   ].filter(Boolean),
   optimization: {
+    runtimeChunk: false,
     minimizer: [
       //@ts-expect-error - This is a known issue with the type definitions
       new rspack.SwcJsMinimizerRspackPlugin(),

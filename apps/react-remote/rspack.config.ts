@@ -3,7 +3,7 @@ import { rspack } from "@rspack/core";
 import * as RefreshPlugin from "@rspack/plugin-react-refresh";
 import { ModuleFederationPlugin } from "@module-federation/enhanced/rspack";
 import { dependencies } from "./package.json";
-import { withZephyr } from "zephyr-webpack-plugin";
+import { withZephyr } from "../../../../zephyr-mono/libs/zephyr-webpack-plugin";
 
 const isDev = process.env.NODE_ENV === "development";
 
