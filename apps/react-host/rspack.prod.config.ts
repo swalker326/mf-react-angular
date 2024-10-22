@@ -1,9 +1,8 @@
-import { defineConfig } from "@rspack/cli";
 import { rspack } from "@rspack/core";
 import * as RefreshPlugin from "@rspack/plugin-react-refresh";
 import { ModuleFederationPlugin } from "@module-federation/enhanced/rspack";
-import { dependencies } from "./package.json";
 import { withZephyr } from "../../../../zephyr-mono/libs/zephyr-webpack-plugin";
+import { moduleFederationConfig } from "./module-federation.prod.config";
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -58,26 +57,7 @@ export default withZephyr()({
   },
   //@ts-expect-error - This is a known issue with the type definitions
   plugins: [
-    new ModuleFederationPlugin({
-      name: "reactHost",
-      dts: false,
-      remotes: {
-        reactRemote:
-          "reactRemote@https://latest_shane_swalker_dev-react-remote-mf-react-angula-a92d00-ze.averygood.dev/remoteEntry.js"
-        // angularRemote: "angularRemote@https://latest_shane_swalker_dev-angular-remote-mf-react-angu-fbe0c3-ze.averygood.dev/mf-manifest.json"
-      },
-      shared: {
-        ...dependencies,
-        react: {
-          singleton: true,
-          requiredVersion: dependencies.react
-        },
-        "react-dom": {
-          singleton: true,
-          requiredVersion: dependencies["react-dom"]
-        }
-      }
-    }),
+    new ModuleFederationPlugin(moduleFederationConfig),
     new rspack.HtmlRspackPlugin({
       template: "./index.html"
     }),
