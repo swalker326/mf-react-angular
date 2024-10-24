@@ -4,8 +4,8 @@ export const moduleFederationConfig = {
   name: "reactHost",
   dts: false,
   remotes: {
-    reactRemote: "reactRemote@http://localhost:3001/remoteEntry.js"
-    // angularRemote: "angularRemote@http://localhost:4200/mf-manifest.json"
+    reactRemote: "reactRemote@http://localhost:3001/remoteEntry.js",
+    angularRemote: "angularRemote@http://localhost:4200/mf-manifest.json"
   },
   shared: {
     ...dependencies,
